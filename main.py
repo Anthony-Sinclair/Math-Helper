@@ -2,7 +2,7 @@
 import BasicOperations
 
 def main():
-    operator = input("Please input what operator you would like to use(Example: Addition):\n")
+    operator = input("Please input what operator you would like to use(Example: Addition):\n") #Allows selection of operator
     operator = operator.lower()
     print()
 
