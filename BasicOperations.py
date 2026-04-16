@@ -43,48 +43,79 @@ def subtract(minuend: int, /, *subtrahends: int):
 
         return difference
 
-def multipy(*factors: int):
+def multipy(*factors: int, showProcess: bool | None = True):
     product = 0
 
-    if len(factors) == 1:
-        print(f"{factors[0]} = {factors[0]}")
-        product = factors[0]
+    if showProcess:
+        if len(factors) == 1:
+            print(f"{factors[0]} = {factors[0]}")
+            product = factors[0]
 
-        return product
+            return product
+        
+        else:
+            product = factors[0]
+            for factor in factors:
+                if factor == factors[0]:
+                    continue
+
+                print(f"{product} * {factor}", end="")
+                product *= factor
+                print(f" = {product}", end="\n")
+
+            return product
     
     else:
-        product = factors[0]
-        for factor in factors:
-            if factor == factors[0]:
-                continue
+        if len(factors) == 1:
+            product = factors[0]
 
-            print(f"{product} * {factor}", end="")
-            product *= factor
-            print(f" = {product}", end="\n")
+            return product
+    
+        else:
+            product = factors[0]
+            for factor in factors:
+                if factor == factors[0]:
+                    continue
+                product *= factor
 
-        return product
+            return product
 
-def divide(dividend: int, *divisors: int):
+
+def divide(dividend: int, *divisors: int, showProcess: bool | None = True):
     quotient = 0
 
-    if divisors == (()):
-        print(f"{dividend} = {dividend}")
-        quotient = dividend
+    if showProcess:
+        if divisors == (()):
+            print(f"{dividend} = {dividend}")
+            quotient = dividend
 
-        return quotient
-    
+            return quotient
+        
+        else:
+            quotient = dividend
+            for divisor in divisors:
+                print(f"{quotient} / {divisor}", end="")
+                quotient /= divisor
+                print(f" = {quotient}", end="\n")
+
+            return quotient
     else:
-        quotient = dividend
-        for divisor in divisors:
-            print(f"{quotient} / {divisor}", end="")
-            quotient /= divisor
-            print(f" = {quotient}", end="\n")
+        if divisors == (()):
+            quotient = dividend
 
-        return quotient
+            return quotient
+        
+        else:
+            quotient = dividend
+            for divisor in divisors:
+                quotient /= divisor
+
+            return quotient
     
-def modulus(dividend: int, divisor: int, /):
+def modulus(dividend: int, divisor: int, /, showProcess: bool | None = True):
     remainder = dividend % divisor
-
-    print(f"{dividend} % {divisor} = {dividend // divisor} Remainder = {remainder}")
+    
+    if showProcess:
+        print(f"{dividend} % {divisor} = {dividend // divisor} Remainder = {remainder}")
 
     return remainder
