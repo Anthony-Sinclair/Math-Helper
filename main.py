@@ -1,4 +1,7 @@
 #Main file where the system will run stuff
+
+#insert BULLSHIT
+
 import BasicOperations
 
 def main():
@@ -66,13 +69,72 @@ def main():
 
 
     elif operator == "multiplication":
-        pass
+        quantity = int(input("How many numbers would you like to multiply?:\n"))
+        print()
+
+        if quantity < 1:
+            print("Please restart the program!")
+        
+        elif quantity == 1:
+            factor = int(input("Please input a number:\n"))
+            print()
+            BasicOperations.multipy(factor)
+
+        else:
+            counter = 1
+            factors = []
+            factor = int(input("Please input a number:\n"))
+            factors.append(factor)
+            while counter < quantity:
+                factor = int(input("Please input another number:\n"))
+                factors.append(factor)
+
+                counter += 1
+
+            print()
+            BasicOperations.multipy(*factors)
 
     elif operator == "division":
-        pass
+        quantity = int(input("How many numbers would you like to divide:\n"))
+        print()
+        if quantity < 1:
+            print("Please restart the program!")
+        
+        elif quantity == 1:
+            dividend = int(input("Please input a number:\n"))
+            print()
+            BasicOperations.divide(dividend)
+        
+        elif quantity == 2:
+            dividend = int(input("Please input the dividend:\n"))
+            divisor = int(input("Please input the divisor:\n"))
+            print()
+            BasicOperations.divide(dividend, divisor)
+
+        else:
+            counter = 2
+            dividend = int(input("Please input the dividend:\n"))
+            divisors = []
+            divisor = int(input("Please input a divisor:\n"))
+            divisors.append(divisor)
+
+            while counter < quantity:
+                divisor = int(input("Please input another divisor:\n"))
+                divisors.append(divisor)
+
+                counter += 1
+
+            print()
+            #divisors.reverse()
+            print(divisors)
+            BasicOperations.divide(dividend, *divisors)
 
     elif operator == "modulus":
-        pass
+        dividend = int(input("Please input the dividend:\n"))
+        divisor = int(input("Please input the divisor:\n"))
+
+        print()
+        BasicOperations.modulus(dividend, divisor)
 
     else:
         print("You inputed an invalid operator, please restart the program!")

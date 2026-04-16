@@ -37,9 +37,6 @@ def subtract(minuend: int, /, *subtrahends: int):
         difference = minuend - subtrahends[0]
         print(f"{minuend} - {subtrahends[0]} = {difference}")
         for subtrahend in subtrahends:
-            if subtrahend == subtrahends[0]:
-                continue
-
             print(f"{difference} - {subtrahend}", end="")
             difference -= subtrahend
             print(f" = {difference}", end="\n")
@@ -50,8 +47,8 @@ def multipy(*factors: int):
     product = 0
 
     if len(factors) == 1:
-        print(f"{factors} = {factors}")
-        product = factors
+        print(f"{factors[0]} = {factors[0]}")
+        product = factors[0]
 
         return product
     
@@ -79,18 +76,15 @@ def divide(dividend: int, *divisors: int):
     else:
         quotient = dividend
         for divisor in divisors:
-            if divisor == divisors[0]:
-                continue
-
             print(f"{quotient} / {divisor}", end="")
             quotient /= divisor
             print(f" = {quotient}", end="\n")
 
         return quotient
     
-def modulus(dividend: int, divisor: int):
+def modulus(dividend: int, divisor: int, /):
     remainder = dividend % divisor
 
-    print(f"{dividend} % {divisor} = {remainder}")
+    print(f"{dividend} % {divisor} = {dividend // divisor} Remainder = {remainder}")
 
-    return int(remainder)
+    return remainder
