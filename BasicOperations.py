@@ -1,47 +1,80 @@
 #This file will contain functions that will return the answer for the following operations: 
 # Addition(+), Subtraction(-), Multiplication(*), Division(/), Exponents(** or ^)
 
-def add(*addends: int):
+def add(*addends: int, showProcess: bool | None = True):
     sum = 0
-    if type(addends[0]) == "list":
-        addends = addends[0]
+    if showProcess:
 
-    if len(addends) == 1:
-        print(f"{addends[0]} = {addends[0]}")
-        sum = addends[0]
+        if type(addends[0]) == "list":
+            addends = addends[0]
 
-        return sum
-    
+        if len(addends) == 1:
+            print(f"{addends[0]} = {addends[0]}")
+            sum = addends[0]
+
+            return sum
+        
+        else:
+            sum = addends[0]
+            for addend in addends:
+                if addend == addends[0]:
+                    continue
+
+                print(f"{sum} + {addend}", end="")
+                sum += addend
+                print(f" = {sum}", end="\n")
+
+            return sum
     else:
-        sum = addends[0]
-        for addend in addends:
-            if addend == addends[0]:
-                continue
+        if type(addends[0]) == "list":
+            addends = addends[0]
 
-            print(f"{sum} + {addend}", end="")
-            sum += addend
-            print(f" = {sum}", end="\n")
+        if len(addends) == 1:
+            sum = addends[0]
 
-        return sum
+            return sum
+        
+        else:
+            sum = addends[0]
+            for addend in addends:
+                if addend == addends[0]:
+                    continue
 
-def subtract(minuend: int, /, *subtrahends: int):
+                sum += addend
+
+            return sum
+
+def subtract(minuend: int, /, *subtrahends: int, showProcess: bool | None = True):
     difference = 0
 
-    if subtrahends == (()):
-        print(f"{minuend} = {minuend}")
-        difference = minuend
+    if showProcess:
+        if subtrahends == (()):
+            print(f"{minuend} = {minuend}")
+            difference = minuend
+            
+            return difference
         
-        return difference
-    
-    else:
-        difference = minuend - subtrahends[0]
-        print(f"{minuend} - {subtrahends[0]} = {difference}")
-        for subtrahend in subtrahends:
-            print(f"{difference} - {subtrahend}", end="")
-            difference -= subtrahend
-            print(f" = {difference}", end="\n")
+        else:
+            difference = minuend - subtrahends[0]
+            print(f"{minuend} - {subtrahends[0]} = {difference}")
+            for subtrahend in subtrahends:
+                print(f"{difference} - {subtrahend}", end="")
+                difference -= subtrahend
+                print(f" = {difference}", end="\n")
 
-        return difference
+            return difference
+    else:
+        if subtrahends == (()):
+            difference = minuend
+            
+            return difference
+        
+        else:
+            difference = minuend - subtrahends[0]
+            for subtrahend in subtrahends:
+                difference -= subtrahend
+
+            return difference
 
 def multipy(*factors: int, showProcess: bool | None = True):
     product = 0

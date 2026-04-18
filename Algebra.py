@@ -92,12 +92,100 @@ def polynomial(expression = str):                #Expression example: x^2 + 4x +
 
 
     elif operators[0] == "-" and operators[1] == "-":
-        pass
+        C = int(terms[2])
+        counter = 1
+        factorsOfC = []
+        while counter < C + 1:
+            if BasicOperations.modulus(C, counter, False) == 0:
+                answer = BasicOperations.divide(C, counter, showProcess=False)
+                factorsOfC.append(int(answer))
+            counter += 1
+
+
+        print(factorsOfC)
+        n = len(factorsOfC)
+
+        for i in range(n):
+            for j in range(i, n):
+                difference = factorsOfC[i] - factorsOfC[j]
+                product = factorsOfC[i] * factorsOfC[j]
+                if difference == int(terms[1].replace("x", "")) and product == C:
+                    factoredForm = f"(x-{factorsOfC[i]})(x+{factorsOfC[j]})"
+                    break
+                
+        print(factoredForm)
+
     else:                                       # operators[0] == "+" and operators[1] == "-"
-        pass
+        C = int(terms[2])
+        counter = 1
+        factorsOfC = []
+        while counter < C + 1:
+            if BasicOperations.modulus(C, counter, False) == 0:
+                answer = BasicOperations.divide(C, counter, showProcess=False)
+                factorsOfC.append(int(answer))
+            counter += 1
+
+
+        print(factorsOfC)
+        n = len(factorsOfC)
+
+        for i in range(n):
+            for j in range(i, n):
+                difference = factorsOfC[i] - factorsOfC[j]
+                product = factorsOfC[i] * factorsOfC[j]
+                if difference == int(terms[1].replace("x", "")) and product == C:
+                    factoredForm = f"(x-{factorsOfC[i]})(x+{factorsOfC[j]})"
+                    break
+                
+        print(factoredForm)
+
+def quadratic(expression = str):                #Expression (-b +- sqrt(b^2 - 4ac)) / (2a)
+    a = 0
+    b = 0
+    c = 0
+    operators = []
+    terms = []
+    expressionSplit = expression.split()
+    
+    for operator in expressionSplit:
+        if operator == "+" or operator == "-":
+            operators.append(operator)
+    for term in expressionSplit:
+        if not (term == "+" or term == "-"):
+            terms.append(term)
+
+    print(operators, terms)
+
+    if terms[0] == "x^2":
+        a = 1
+
+    else:
+        a = int(terms[0].replace("x^2", ""))
+
+    if operators[0] == "-":
+        b = -int(terms[1].replace("x", ""))
+    
+    if operators[1] == "-":
+        c = -int(terms[2])
+    
+    numeratorAddition = -b + math.sqrt(exponent(b, 2) - 4 * a * c)
+
+    numeratorSubtraction = -b - math.sqrt(exponent(b, 2) - 4 * a * c)
+
+    denominator = 2 * a
+
+    quotientAddition = numeratorAddition / denominator
+
+    quotientSubtraction = numeratorSubtraction / denominator
+
+    return quotientAddition, quotientSubtraction
 
 
     
 polynomial("x^2 + 16x + 60")
 polynomial("x^2 - 4x + 4")
+polynomial("x^2 - 3x - 4")
+polynomial("x^2 - 3x - 10")
+polynomial("x^2 + 13x - 30")
+quadratic("4x^2 - 15x - 90")
 
