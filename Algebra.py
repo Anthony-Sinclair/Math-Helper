@@ -59,14 +59,38 @@ def polynomial(expression = str):                #Expression example: x^2 + 4x +
         for i in range(n):
             for j in range(i, n):
                 sum = factorsOfC[i] + factorsOfC[j]
-                if sum == int(terms[1].replace("x", "")):
+                product = factorsOfC[i] * factorsOfC[j]
+                if sum == int(terms[1].replace("x", "")) and product == C:
                     factoredForm = f"(x+{factorsOfC[i]})(x+{factorsOfC[j]})"
                     break
                 
         print(factoredForm)
 
     elif operators[0] == "-" and operators[1] == "+":
-        pass
+        C = int(terms[2])
+        counter = 1
+        factorsOfC = []
+        while counter < C + 1:
+            if BasicOperations.modulus(C, counter, False) == 0:
+                answer = BasicOperations.divide(C, counter, showProcess=False)
+                factorsOfC.append(int(answer))
+            counter += 1
+
+
+        print(factorsOfC)
+        n = len(factorsOfC)
+
+        for i in range(n):
+            for j in range(i, n):
+                difference = -factorsOfC[i] - factorsOfC[j]
+                product = factorsOfC[i] * factorsOfC[j]
+                if difference == -int(terms[1].replace("x", "")) and product == C:
+                    factoredForm = f"(x-{factorsOfC[i]})(x-{factorsOfC[j]})"
+                    break
+                
+        print(factoredForm)
+
+
     elif operators[0] == "-" and operators[1] == "-":
         pass
     else:                                       # operators[0] == "+" and operators[1] == "-"
@@ -74,5 +98,6 @@ def polynomial(expression = str):                #Expression example: x^2 + 4x +
 
 
     
-polynomial("x^2 + 4x + 4")
+polynomial("x^2 + 16x + 60")
+polynomial("x^2 - 4x + 4")
 
