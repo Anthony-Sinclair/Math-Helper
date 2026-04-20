@@ -27,7 +27,53 @@ def factorial(integer):
 
     return product
 
-def polynomial(expression = str):                #Expression example: x^2 + 4x + 4
+def function(expression: str, plugInNumber: int):          
+    # operators = []
+    yValue = 0
+    terms = expression.split("+")
+    positives = []
+    negatives = []
+    # expressionSplit = expression.split("+")
+
+    # for term in range(len(expressionSplit)):
+    #     expressionSplit[term] = expressionSplit[term].strip()
+    #     if expressionSplit[term].find("-") > -1:
+    #         negatives = expressionSplit[term].split("-")
+    #         for i in range(len(negatives)):
+    #             if i == 0:
+    #                 negativeValue = negatives[i].strip()
+    #             else:
+    #                 negativeValue = "-" + negatives[i].strip()
+    #             positives.append(negativeValue)
+    #         expressionSplit.pop(term)
+    #         expressionSplit = expressionSplit[:term] + positives + expressionSplit[term:]
+
+    new_terms = []
+    for term in terms:
+        sub_terms = term.strip().split("-")
+        for idx in range(1, len(sub_terms)):
+            sub_terms[idx] = "-" + sub_terms[idx].strip()
+        new_terms += sub_terms
+
+    
+
+    print(new_terms)
+    # for operator in expressionSplit:
+    #     if operator == "+":
+            
+    #         # operators.append(operator)
+    #         break
+
+    #     else:
+    #         print()
+    #         pass
+
+
+
+
+# A + Bx^C + Dx^E ...
+
+def polynomial(expression: str):                #Expression example: x^2 + 4x + 4
     factoredForm = ""            
     operators = []
     terms = []
@@ -182,10 +228,13 @@ def quadratic(expression = str):                #Expression (-b +- sqrt(b^2 - 4a
 
 
     
-polynomial("x^2 + 16x + 60")
-polynomial("x^2 - 4x + 4")
-polynomial("x^2 - 3x - 4")
-polynomial("x^2 - 3x - 10")
-polynomial("x^2 + 13x - 30")
-quadratic("4x^2 - 15x - 90")
+# polynomial("x^2 + 16x + 60")
+# polynomial("x^2 - 4x + 4")
+# polynomial("x^2 - 3x - 4")
+# polynomial("x^2 - 3x - 10")
+# polynomial("x^2 + 13x - 30")
+# quadratic("4x^2 - 15x - 90")
+
+function("12x^4 + 4x^3 - 7x^2 - 10x^1 + 12", 3)
+# function("56x^6 - 3x^5 + 12x^4 + 4x^3 - 7x^2 - 10x^1 + 12", 3)
 
